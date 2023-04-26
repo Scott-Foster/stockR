@@ -1,0 +1,13 @@
+citHeader("To cite the stckR package in publications please use the following.")
+
+citEntry(
+	entry="Article",
+	title="Reliably discriminating stock structure with genetic markers: Mixture models with robust and fast computation",
+	author = personList(as.person("S.D. Foster"), as.person("P. Feutry"), as.person("P.M. Grewe"), as.person( "O. Berry"), as.person("F.K.C. Berry"), as.person("C.R. Davies")),
+	year = 2018,
+	journal = "Molecular Ecology Resources",
+	volume="18",
+	pages="1310-1325",
+	textVersion = paste("Foster, S. D.; Feutry, P.; Grewe, P. M.; Berry, O.; Hui, F. K. C. & Davies, C. R. Reliably discriminating stock structure with genetic markers: Mixture models with robust and fast computation Molecular Ecology Resources, 2018, 18, 1310-1325")
+)
+
