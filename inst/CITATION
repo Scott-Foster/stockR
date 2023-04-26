@@ -1,9 +1,9 @@
-citHeader("To cite the stckR package in publications please use the following.")
+citHeader("To cite the stockR package in publications please use the following.")
 
-citEntry(
-	entry="Article",
+bibentry(
+	bibtype="Article",
 	title="Reliably discriminating stock structure with genetic markers: Mixture models with robust and fast computation",
-	author = personList(as.person("S.D. Foster"), as.person("P. Feutry"), as.person("P.M. Grewe"), as.person( "O. Berry"), as.person("F.K.C. Berry"), as.person("C.R. Davies")),
+	author = c(person("S.D. Foster"), person("P. Feutry"), person("P.M. Grewe"), person( "O. Berry"), person("F.K.C. Berry"), person("C.R. Davies")),
 	year = 2018,
 	journal = "Molecular Ecology Resources",
 	volume="18",

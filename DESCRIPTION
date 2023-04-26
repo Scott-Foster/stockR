@@ -1,10 +1,10 @@
 Package: stockR
 Title: Identifying Stocks in Genetic Data
-Version: 1.0.75
+Version: 1.0.76
 Authors@R: c(person("Scott D.", "Foster", role = c("aut", "cre"),
                      email = "scott.foster@data61.csiro.au"))
 Author: Scott D. Foster [aut, cre]
-Description: Provides a mixture model for clustering individuals (or sampling groups) into stocks based on their genetic profile. Here, sampling groups are individuals that are sure to come from the same stock (e.g. breeding adults or larvae). The mixture (log-)likelihood is maximised using the EM-algorithm after find good starting values via a K-means clustering of the genetic data. Details can be found in Foster, Feutry, Grewe, Berry, Hui, Davies (2019) Reliably Discriminating Stock Structure with Genetic Markers: Mixture Models with Robust and Fast Computation. Molecular Ecology Resources.
+Description: Provides a mixture model for clustering individuals (or sampling groups) into stocks based on their genetic profile. Here, sampling groups are individuals that are sure to come from the same stock (e.g. breeding adults or larvae). The mixture (log-)likelihood is maximised using the EM-algorithm after finding good starting values via a K-means clustering of the genetic data. Details can be found in: Foster, S. D.; Feutry, P.; Grewe, P. M.; Berry, O.; Hui, F. K. C. & Davies (2020) <doi:10.1111/1755-0998.12920>.
 License: GPL (>=2)
 LinkingTo: Rcpp
 Imports: Rcpp, stats, gtools, parallel, RColorBrewer, methods

@@ -203,9 +203,10 @@ If you have any queries regarding the package, then please contact the developer
 \section*{Last Things Last}
 
 The only remaining thing to do is to tidy up our workspace. This is just removing all objects for this analysis from your workspace. I like to do this, in tutorial situations, but you may not. It is entirely up to you whether you clean or not.
-<<Tidy>>=
-#tidy
-rm( list=ls())
+<<Tidy, eval=FALSE>>=
+#THIS IS SUGGESTIVE ONLY.  
+#You may wish to tidy your workspace.
+#rm( list=ls())
 @
 
 

@@ -671,6 +671,11 @@ function (x, locations = NULL, plotTitle = NULL, CI.width=0.95, region.lwd=3.5, 
 {
   if (is.null(x) | !is(x, "stockBOOT.object"))
     stop("Need stockBOOT.object from stockBOOT function.  Uncertainty cannot be displayed without this object")
+
+  #to stop new par settings being delivered to user AFTER function exit.  Thanks CRAN maintainer Victoria Wimmer!
+  oldpar <- par(no.readonly = TRUE)    # code line i
+  on.exit(par(oldpar))            # code line i + 1
+
   nFish <- dim(x$postProbs)[1]
   nGrps <- dim(x$postProbs)[2]
   if (is.null(locations)) {
