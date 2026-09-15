@@ -297,6 +297,15 @@ function( nu0, m.steps)
 }
 
 
+"update.nu.for.DA" <-
+function( nu, eta)
+{
+  #find.eta.for.DA() defines eta as a multiplicative growth rate so that
+  #nu reaches the uncooled likelihood surface after the requested steps.
+  return( min( 1, nu * (1 + eta)))
+}
+
+
 "FormatGenotypes" <-
 function (genotypes, ploidy) 
 {
@@ -1154,7 +1163,7 @@ function(SNPdata=NULL, sample.grps=as.factor( 1:ncol( SNPdata)), K=3, weights=re
     allLogls[kount+1] <- margLogl <- calcMargLogl( all.parms$new.parms, all.data, condProbs.fish, K)
     #update
     if( control$method=="DA.EM")
-      nu <- min( 1, nu+control$DA.eta)#(1+control$DA.eta)*nu)
+      nu <- update.nu.for.DA( nu, control$DA.eta)
     if( (conv$conv | kount > control$EM.maxit) & kount > control$EM.minit)
       break
   }
