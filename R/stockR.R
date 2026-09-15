@@ -121,13 +121,18 @@ function( all.data, grps, means, K)
 
 "calcFst" <-
 function( data, grps){
+  if (!is.matrix(data) || !is.numeric(data) || any(!is.na(data) & !(data %in% 0:2)))
+    stop("data must be a numeric SNP-by-individual matrix containing 0, 1, 2 or NA")
+  if (length(grps) != ncol(data) || anyNA(grps))
+    stop("grps must provide one non-missing group per individual")
+  grps <- as.integer(factor(grps))
   
   newDat <- matrix( NA, nrow=ncol( data), ncol=2*nrow( data))
   
   for( ii in 1:ncol( data)){
     for( jj in 1:nrow( data)){
       if( is.na( data[jj,ii]))
-          newDat[ii,2*(jj-1)+1:2] <- -1
+          newDat[ii,2*(jj-1)+1:2] <- NA_real_
       else{
         if( data[jj,ii]==0)
           newDat[ii,2*(jj-1)+1:2] <- 0
@@ -1185,4 +1190,3 @@ function( parms)
   parms$old.parms <- parms$new.parms
   return( parms)
 }
-
