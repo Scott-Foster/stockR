@@ -77,10 +77,10 @@ Control arguments, and especially their defaults, will vary depending on the typ
 \describe{
 \item{EM.eps}{the absolute convergence tolerance for the EM-algorithm. Default is 1e-5, that is successive differences in parameters have to be very small before converged is reached.}
 \item{EM.maxit}{the maximum number of iterations for the EM-algorithm. Default is 100.}
-\item{EM.minit}{the minimum number of iteraction for the EM-algorithm. Default is 25. EM.minit is the number of steps required to reach the non-cooled log-likelihood surface.}
+\item{EM.minit}{the minimum number of iterations for the EM algorithm. The default is 25. For DA.EM, this is also the number of multiplicative cooling updates used to move from \code{DA.nu.init} to the non-cooled log-likelihood surface.}
 \item{EM.tau.step}{the step-size of the initial update for the posterior probabilities. Default is 1. If less than 1 (say 0.5), then the step size is less (half say) than the size that the EM-algorithm suggests. EM.tau.step increases linearly to 1 after EM.minit steps.}
 \item{tau.init.max}{After the initial hard-clustering, the groupings are made soft by specifying posterior probabilities that are less than 1 and greater than 0. The default is to make the hard clusterings ever-so-slightly more likely than others.}
-\item{DA.nu.init}{the initial cooling parameter. Default is 1e-4. Algorithm seems particularly sensitive to this choice. The cooling parameter nu is increased gradually until it reaches 1 (max) at EM.tau.step iterations. See Zhou and Lange (2010) for details.}
+\item{DA.nu.init}{the initial cooling parameter. The default is 1e-4. The algorithm may be sensitive to this choice. The cooling parameter nu is increased multiplicatively until it reaches 1 after \code{EM.minit} updates. See Zhou and Lange (2010) for details. The default and recommended fitting method remains \code{"Kmeans.EM"}.}
 }
 }
 \seealso{\code{\link{sim.stock.data}}, \code{\link{stockBOOT}}}

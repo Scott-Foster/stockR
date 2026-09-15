@@ -121,13 +121,18 @@ function( all.data, grps, means, K)
 
 "calcFst" <-
 function( data, grps){
+  if (!is.matrix(data) || !is.numeric(data) || any(!is.na(data) & !(data %in% 0:2)))
+    stop("data must be a numeric SNP-by-individual matrix containing 0, 1, 2 or NA")
+  if (length(grps) != ncol(data) || anyNA(grps))
+    stop("grps must provide one non-missing group per individual")
+  grps <- as.integer(factor(grps))
   
   newDat <- matrix( NA, nrow=ncol( data), ncol=2*nrow( data))
   
   for( ii in 1:ncol( data)){
     for( jj in 1:nrow( data)){
       if( is.na( data[jj,ii]))
-          newDat[ii,2*(jj-1)+1:2] <- -1
+          newDat[ii,2*(jj-1)+1:2] <- NA_real_
       else{
         if( data[jj,ii]==0)
           newDat[ii,2*(jj-1)+1:2] <- 0
@@ -289,6 +294,15 @@ function( nu0, m.steps)
   eta <- exp( (log( 1)-log( nu0)) / m.steps) - 1
   
   return( eta)
+}
+
+
+"update.nu.for.DA" <-
+function( nu, eta)
+{
+  #find.eta.for.DA() defines eta as a multiplicative growth rate so that
+  #nu reaches the uncooled likelihood surface after the requested steps.
+  return( min( 1, nu * (1 + eta)))
 }
 
 
@@ -1149,7 +1163,7 @@ function(SNPdata=NULL, sample.grps=as.factor( 1:ncol( SNPdata)), K=3, weights=re
     allLogls[kount+1] <- margLogl <- calcMargLogl( all.parms$new.parms, all.data, condProbs.fish, K)
     #update
     if( control$method=="DA.EM")
-      nu <- min( 1, nu+control$DA.eta)#(1+control$DA.eta)*nu)
+      nu <- update.nu.for.DA( nu, control$DA.eta)
     if( (conv$conv | kount > control$EM.maxit) & kount > control$EM.minit)
       break
   }
@@ -1185,4 +1199,3 @@ function( parms)
   parms$old.parms <- parms$new.parms
   return( parms)
 }
-
